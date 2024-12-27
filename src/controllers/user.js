@@ -45,55 +45,55 @@ class UserData {
     }
   }
 
-    static async userLogin(req, res) {
-      const { userName, password } = req.body;
-      try {
-        const result = await validator.validateAsync(req.body);
-        if (!result.error) {
-          const user = await Db.findUser(User, userName);
-          if (user == null) {
-            return Response.responseBadAuth(res, "Invalid username or password");
-          }
-
-          const isSamePassword = await bcrypt.comparePassword(
-            password,
-            user.password
-          );
-          if (!isSamePassword) {
-            return Response.responseBadAuth(res, "Invalid username or password");
-          }
-
-          const token = Token.sign({
-            userName: user.userName,
-            userId: user._id,
-          });
-
-          // Set the token in the cookie
-          res.cookie("token", token, {
-            httpOnly: true, // This ensures the cookie can't be accessed via JavaScript
-            secure: process.env.NODE_ENV === "production", // Only secure in production
-            sameSite: "none", // Adjust sameSite based on your needs
-          });
-
-          // Optionally send the token in the response body
-          return res.status(200).json({ token, user });
-        } else {
-          return Response.responseInvalidInput(res);
+  static async userLogin(req, res) {
+    const { userName, password } = req.body;
+    try {
+      const result = await validator.validateAsync(req.body);
+      if (!result.error) {
+        const user = await Db.findUser(User, userName);
+        if (user == null) {
+          return Response.responseBadAuth(res, "Invalid username or password");
         }
-      } catch (error) {
-        console.error("Error during login:", error);
-        return Response.responseServerError(res);
-      }
-    }
 
-  // static async getAllUsers(req, res) {
-  //   try {
-  //     const allUsers = await Db.getAllUsers(User);
-  //     return Response.responseOk(res, allUsers);
-  //   } catch (error) {
-  //     return Response.responseNotFound(res);
-  //   }
-  // }
+        const isSamePassword = await bcrypt.comparePassword(
+          password,
+          user.password
+        );
+        if (!isSamePassword) {
+          return Response.responseBadAuth(res, "Invalid username or password");
+        }
+
+        const token = Token.sign({
+          userName: user.userName,
+          userId: user._id,
+        });
+
+        // Set the token in the cookie
+        res.cookie("token", token, {
+          httpOnly: true, // This ensures the cookie can't be accessed via JavaScript
+          secure: process.env.NODE_ENV === "production", // Only secure in production
+          sameSite: "none", // Adjust sameSite based on your needs
+        });
+
+        // Optionally send the token in the response body
+        return res.status(200).json({ token, user });
+      } else {
+        return Response.responseInvalidInput(res);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      return Response.responseServerError(res);
+    }
+  }
+
+  static async getAllUsers(req, res) {
+    try {
+      const allUsers = await Db.getAllUsers(User);
+      return Response.responseOk(res, allUsers);
+    } catch (error) {
+      return Response.responseNotFound(res);
+    }
+  }
 }
 
 export default UserData;

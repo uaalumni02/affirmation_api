@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import mongoose, { connect } from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const { log, error } = console;
@@ -15,6 +16,7 @@ import userRoutes from "./routes/user.routes";
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const DB_URL = process.env.MONGO_URL;
 
