@@ -16,6 +16,14 @@ class Db {
       throw error;
     }
   }
+  // static async getAllUsers(model) {
+  //   try {
+  //     const allUsers = await model.find({});
+  //     return allUsers;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 }
 
 export default Db;
