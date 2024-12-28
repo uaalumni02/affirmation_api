@@ -58,6 +58,32 @@ class Db {
       throw error;
     }
   }
+  static async addAffirmation(model, data) {
+    try {
+      const newAffirmation = await model({ ...data });
+      return newAffirmation.save();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getAllAffirmations(model) {
+    try {
+      const allAffirmations = await model.find({});
+      return allAffirmations;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getAffirmationyById(model, id) {
+    try {
+      const affirmation = await model.findById(id);
+      return affirmation;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;
