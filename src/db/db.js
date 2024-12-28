@@ -32,6 +32,32 @@ class Db {
       throw error;
     }
   }
+  static async addCategory(model, data) {
+    try {
+      const newCategory = await model({ ...data });
+      return newCategory.save();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getAllCategories(model) {
+    try {
+      const allCategories = await model.find({});
+      return allCategories;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async getCategoryById(model, id) {
+    try {
+      const category = await model.findById(id);
+      return category;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;
