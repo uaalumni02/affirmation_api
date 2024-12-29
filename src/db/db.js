@@ -69,8 +69,9 @@ class Db {
 
   static async getAllAffirmations(model) {
     try {
-      const allAffirmations = await model.find({})
-      .populate("userName category");
+      const allAffirmations = await model
+        .find({})
+        .populate("userName category");
       return allAffirmations;
     } catch (error) {
       throw error;
@@ -79,9 +80,21 @@ class Db {
 
   static async getAffirmationById(model, id) {
     try {
-      const affirmation = await model.findById(id)
-      .populate("userName category");
+      const affirmation = await model
+        .findById(id)
+        .populate("userName category");
       return affirmation;
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async getAffirmationByUserName(model, userName) {
+    try {
+      const getAffirmationByUser = await model
+        .find({ userName })
+        .populate("userName category")
+        .exec();
+      return getAffirmationByUser;
     } catch (error) {
       throw error;
     }

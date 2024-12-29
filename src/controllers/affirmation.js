@@ -36,7 +36,18 @@ class AffirmationData {
     }
   }
 
-  //---------need to create edit 
+  static async getAffirmationByUser(req, res) {
+    const { userName } = req.params;
+    try {
+      const affirmationByUserName = await Db.getAffirmationByUserName(Affirmation, userName);
+      return Response.responseOk(res, affirmationByUserName);
+    } catch (error) {
+      return Response.responseNotFound(res);
+    }
+  }
+
+
+  //---------need to create edit  and get affirmation by user
 }
 
 export default AffirmationData;
