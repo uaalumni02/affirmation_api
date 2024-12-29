@@ -13,6 +13,7 @@ const router = express.Router();
 
 import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
+import affirmationRoutes from "./routes/affirmation.routes";
 
 app.use(cors());
 app.use(express.json());
@@ -30,6 +31,7 @@ try {
 
 router.use("/user", userRoutes);
 router.use("/category", categoryRoutes);
+router.use("/affirmation", affirmationRoutes);
 
 app.use("/api", router);
 

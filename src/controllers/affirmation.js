@@ -10,10 +10,11 @@ class AffirmationData {
     try {
       const result = await validator.validateAsync(AffirmationData);
       if (!result.error) {
-        const Affirmation = await Db.addAffirmation(Affirmation, AffirmationData);
-        return Response.responseOkCreated(res, Affirmation);
+        const AffirmationInfo = await Db.addAffirmation(Affirmation, AffirmationData);
+        return Response.responseOkCreated(res, AffirmationInfo);
       }
     } catch (error) {
+      console.log(error)
       return Response.responseServerError(res);
     }
   }
