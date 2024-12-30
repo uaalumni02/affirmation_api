@@ -10,11 +10,14 @@ class AffirmationData {
     try {
       const result = await validator.validateAsync(AffirmationData);
       if (!result.error) {
-        const AffirmationInfo = await Db.addAffirmation(Affirmation, AffirmationData);
+        const AffirmationInfo = await Db.addAffirmation(
+          Affirmation,
+          AffirmationData
+        );
         return Response.responseOkCreated(res, AffirmationInfo);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return Response.responseServerError(res);
     }
   }
@@ -39,15 +42,42 @@ class AffirmationData {
   static async getAffirmationByUser(req, res) {
     const { userName } = req.params;
     try {
-      const affirmationByUserName = await Db.getAffirmationByUserName(Affirmation, userName);
+      const affirmationByUserName = await Db.getAffirmationByUserName(
+        Affirmation,
+        userName
+      );
       return Response.responseOk(res, affirmationByUserName);
     } catch (error) {
       return Response.responseNotFound(res);
     }
   }
 
+  static async editAffirmation(req, res) {
+    const affirmationId = req.params.id;
+    const affirmationData = { ...req.body };
 
-  //---------need to create edit  and get affirmation by user
+    const { affirmation, userName, category, isFavorite } = req.body;
+    const updateAffirmation = {
+      affirmation,
+      userName,
+      category,
+      isFavorite,
+    };
+    try {
+      const result = await validator.validateAsync(updateAffirmation);
+      if (!result.error) {
+        const affirmationToUpdate = await Db.editAffirmationData(
+          Affirmation,
+
+          affirmationId,
+          affirmationData
+        );
+        return Response.responseOk(res, affirmationToUpdate);
+      }
+    } catch (error) {
+      return Response.responseServerError(res);
+    }
+  }
 }
 
 export default AffirmationData;

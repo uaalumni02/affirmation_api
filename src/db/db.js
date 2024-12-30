@@ -99,6 +99,21 @@ class Db {
       throw error;
     }
   }
+  static async editAffirmationData(model, affirmationId, affirmationData) {
+    try {
+      const filter = { _id: affirmationId };
+      const updatedAffirmation = await model.findOneAndUpdate(
+        filter,
+        affirmationData,
+        {
+          new: true,
+        }
+      );
+      return updatedAffirmation;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;

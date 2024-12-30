@@ -10,6 +10,9 @@ router
   .post(checkAuth, affirmationController.addAffirmation)
   .get(checkAuth, affirmationController.allAffirmations);
 
-router.route("/:id").get(checkAuth, affirmationController.getAffirmationById);
+router
+  .route("/:id")
+  .get(checkAuth, affirmationController.getAffirmationById)
+  .patch(checkAuth, affirmationController.editAffirmation);
 
 export default router;
