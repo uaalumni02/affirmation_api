@@ -15,6 +15,7 @@ import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
 import affirmationRoutes from "./routes/affirmation.routes";
 import affirmationByUserRoutes from "./routes/affirmationByUser.routes";
+import randomAffirmation from "./routes/randomAffirmation.routes";
 
 app.use(cors());
 app.use(express.json());
@@ -34,6 +35,7 @@ router.use("/user", userRoutes);
 router.use("/category", categoryRoutes);
 router.use("/affirmation", affirmationRoutes);
 router.use("/affirmation_by_user", affirmationByUserRoutes);
+router.use("/random_affirmation", randomAffirmation);
 
 app.use("/api", router);
 
