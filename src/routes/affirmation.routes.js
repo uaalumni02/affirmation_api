@@ -12,6 +12,7 @@ router
 
 router
   .route("/:id")
+  .delete(checkAuth, affirmationController.deleteAffirmation)
   .get(checkAuth, affirmationController.getAffirmationById)
   .patch(checkAuth, affirmationController.editAffirmation);
 

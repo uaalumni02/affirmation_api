@@ -114,6 +114,14 @@ class Db {
       throw error;
     }
   }
+  static async removeAffirmation(model, id) {
+    try {
+      const deleteAffirmation = await model.findOneAndDelete({ _id: id });
+      return {};
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;

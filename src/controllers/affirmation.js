@@ -78,6 +78,15 @@ class AffirmationData {
       return Response.responseServerError(res);
     }
   }
+  static async deleteAffirmation(req, res) {
+    const { id } = req.params;
+    try {
+      const affirmationToDelete = await Db.removeAffirmation(Affirmation, id);
+      return Response.responseOk(res, affirmationToDelete);
+    } catch (error) {
+      return Response.responseServerError(res);
+    }
+  }
 }
 
 export default AffirmationData;
