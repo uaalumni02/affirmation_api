@@ -72,7 +72,7 @@ class UserData {
         res.cookie("token", token, {
           httpOnly: true, // This ensures the cookie can't be accessed via JavaScript
           secure: process.env.NODE_ENV === "production", // Only secure in production
-          sameSite: "none", // Adjust sameSite based on your needs
+          sameSite: "lax", // Adjust sameSite based on your needs
         });
 
         // Optionally send the token in the response body

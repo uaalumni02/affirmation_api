@@ -17,12 +17,12 @@ import affirmationRoutes from "./routes/affirmation.routes";
 import affirmationByUserRoutes from "./routes/affirmationByUser.routes";
 import randomAffirmation from "./routes/randomAffirmation.routes";
 
-app.use(
-  cors({
-    origin: "http://localhost:3001", // Adjust this to match your frontend URL
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: 'http://localhost:3001', // Front-end origin
+  credentials: true, // Allow cookies and credentials
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
