@@ -1,6 +1,6 @@
 {
     "affirmations": {
-      "self_love": [
+      "Self_Love": [
         "I am worthy of love and respect.",
         "I love myself unconditionally.",
         "I accept myself as I am.",
@@ -12,7 +12,7 @@
         "I forgive myself for my past mistakes.",
         "I am at peace with my past and look forward to my future."
       ],
-      "confidence": [
+      "Confidence": [
         "I am capable of achieving great things.",
         "I believe in my abilities and skills.",
         "I am confident in my decisions.",
@@ -24,7 +24,7 @@
         "I speak with clarity and confidence.",
         "I am strong, capable, and resilient."
       ],
-      "gratitude": [
+      "Gratitude": [
         "I am grateful for the blessings in my life.",
         "Every day, I find reasons to be thankful.",
         "I appreciate the small moments of joy in life.",
@@ -36,7 +36,7 @@
         "I focus on the positives and let go of negativity.",
         "My gratitude attracts even more blessings."
       ],
-      "resilience": [
+      "Resilience": [
         "I am strong enough to overcome any obstacle.",
         "Challenges help me grow and become stronger.",
         "I bounce back from setbacks with ease.",
